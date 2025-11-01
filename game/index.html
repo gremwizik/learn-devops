@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Battle - Онлайн игра</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🐍 Snake Battle</h1>
+            <p class="subtitle">Многопользовательская онлайн игра</p>
+        </header>
+
+        <div class="game-wrapper">
+            <!-- Левая панель: Статистика -->
+            <aside class="sidebar left">
+                <div class="panel">
+                    <h2>📊 Статистика</h2>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Ваш счёт:</span>
+                            <span class="stat-value" id="score">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Длина:</span>
+                            <span class="stat-value" id="length">3</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Игроков:</span>
+                            <span class="stat-value" id="players">1</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <h2>🎮 Управление</h2>
+                    <div class="controls-info">
+                        <p><kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></p>
+                        <p>или</p>
+                        <p><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></p>
+                        <p class="control-hint">Управляйте змейкой</p>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Центральная часть: Игровое поле -->
+            <main class="game-area">
+                <div class="game-container">
+                    <div id="connection-status" class="status-bar">
+                        <span class="status-indicator offline"></span>
+                        <span id="status-text">Подключение...</span>
+                    </div>
+                    
+                    <canvas id="gameCanvas" width="600" height="600"></canvas>
+                    
+                    <div id="game-over" class="game-over hidden">
+                        <div class="game-over-content">
+                            <h2>💀 Игра окончена!</h2>
+                            <p>Ваш счёт: <span id="final-score">0</span></p>
+                            <p>Длина змейки: <span id="final-length">0</span></p>
+                            <button id="restart-btn" class="btn btn-primary">🔄 Играть снова</button>
+                        </div>
+                    </div>
+
+                    <div id="start-screen" class="start-screen">
+                        <div class="start-content">
+                            <h2>🎮 Добро пожаловать!</h2>
+                            <input type="text" id="player-name" placeholder="Введите ваше имя" maxlength="15" value="Игрок">
+                            <button id="start-btn" class="btn btn-primary">▶ Начать игру</button>
+                            <div class="game-info">
+                                <p>🎯 Собирайте еду, чтобы расти</p>
+                                <p>⚠️ Избегайте столкновений</p>
+                                <p>🏆 Соревнуйтесь с другими игроками</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Правая панель: Таблица лидеров -->
+            <aside class="sidebar right">
+                <div class="panel">
+                    <h2>🏆 Лидеры</h2>
+                    <div id="leaderboard" class="leaderboard">
+                        <div class="leaderboard-empty">Нет игроков</div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <h2>🎨 Ваш цвет</h2>
+                    <div id="player-color" class="player-color-display">
+                        <div class="color-box" id="color-box"></div>
+                        <p id="player-name-display">-</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <footer>
+            <p>Используйте стрелки или WASD для управления | Создано с ❤️</p>
+        </footer>
+    </div>
+
+    <script src="client.js"></script>
+</body>
+</html>
